@@ -29,8 +29,6 @@ function install_programs(){
 	echo "Install NodeJS"
 	curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 	sudo apt-get install -y --allow-unauthenticated nodejs
-	echo "Install git"
-	sudo apt-get install -y --allow-unauthenticated git
 	echo "Install MongoDB 3.2"
 	sudo apt-get install -y --allow-unauthenticated mongodb-org
 	echo "Set LC_ALL=C to .profile"
