@@ -72,6 +72,9 @@ class Database extends Base {
         MongoClient.connect(this.connectionString, (err, server) => {
             if (!err) {
                 this.server = server;
+                console.log(`Database connected using ${this.connectionString}`);
+            } else {
+                console.error(`Database not connected`);
             }
         });
     }

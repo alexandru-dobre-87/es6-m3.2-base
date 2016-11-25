@@ -58,7 +58,7 @@ class WebServer extends Base {
          * Start listening on the configured port
          */
         this._server.listen(WEB_SERVER_PORT, function () {
-            console.log(`Web server is up and running on port ${WEB_SERVER_PORT}!`);
+            console.log(`Web server is up and running on port ${WEB_SERVER_PORT}`);
         });
 
     }

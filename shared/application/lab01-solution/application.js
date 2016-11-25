@@ -26,13 +26,13 @@ class Application {
      * @returns {[*]}
      */
     get routes() {
-        return this.routesList.map(function (script) {
+        return this.routesList.map((script) => {
             return require(script);
         });
     }
 
     get pages() {
-        return this.routesList.map(function (script) {
+        return this.routesList.map((script) => {
             let {name, path} = require(script);
             return {name, path};
         });

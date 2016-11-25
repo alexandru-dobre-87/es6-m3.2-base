@@ -1,0 +1,14 @@
+doctype 5
+html(lang="en")
+    head
+        title= title
+        link(rel='stylesheet', href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+        script(src='//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js')
+        script(src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+        script(src='//maps.googleapis.com/maps/api/js?key=AIzaSyAW4M0L7I0kc93jPclEbMWyaIdN7HxiGOE')
+        script(src='/static/chart.js')
+    body
+        p
+            each page in pages
+                button.btn.btn-link.btn-lg: a(href=page.path) #{page.name}
+        block content

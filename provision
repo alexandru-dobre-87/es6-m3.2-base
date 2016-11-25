@@ -51,7 +51,7 @@ function prepare_database() {
     echo -e "\nStarting MongoDB"
     mongod -f /etc/mongod.conf --fork
     echo -e "\nPreparing the database"
-    mongoimport -d sensors -c temperatures /shared/dataset/temperatures.json
+    mongo localhost:27017/sensors /shared/dataset/init.js
 }
 
 function start_application() {

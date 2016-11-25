@@ -1,0 +1,30 @@
+extends layout
+append content
+    body
+        div.container
+            div.content
+                h1.center-block= title
+                table.table.table-striped.table-bordered.table-hover.table-condensed
+                    thead
+                        tr
+                            th Station Name
+                            th Station Location
+                            th Owner Name
+                            th Min Temperature
+                            th Max Temperature
+                            th Year
+                    tbody
+                        each item in temperatures
+                            tr
+                                td #{item.station.name}
+                                td #{item.station.location.coordinates[0]} #{item.station.location.coordinates[1]}
+                                td #{item.owner.name}
+                                td=parseFloat(item.temperature.min).toFixed(2)
+                                td=parseFloat(item.temperature.max).toFixed(2)
+                                td #{item.year}
+                        else
+                            tr
+                                td=err
+                                td N/A
+                                td N/A
+        div.footer
