@@ -9,27 +9,27 @@ function config(){
 	export CLIENT_IP_ADDR=`ifconfig  | grep 'inet addr:'| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $1}' | tail -1`
 	export CLIENT_FQDN=`hostname`
 	export CLIENT_NAME=`hostname | cut -d. -f 1 | tr '[:upper:]' '[:lower:]'`
-	echo "Configuring /etc/hosts ..."
+	echo -e "\nConfiguring /etc/hosts ..."
 	echo "127.0.0.1 localhost localhost.localdomain localhost4 localhost4.localdomain4" > /etc/hosts
 	echo "::1       localhost localhost.localdomain localhost6 localhost6.localdomain6" >> /etc/hosts
 	echo "$CLIENT_IP_ADDR    $CLIENT_FQDN $CLIENT_NAME" >> /etc/hosts
 }
 
 function update_repo() {
-	echo "Install MongoDB 3.2 Repository"
+	echo -e "\nInstall MongoDB 3.2 Repository"
 	echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
 	sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6
-	echo "Update Repositories"
+	echo -e "\nUpdate Repositories"
 	sudo apt-get update -y
 }
 
 function install_programs(){
-	echo "Install build essentials"
+	echo -e "\nInstall build essentials"
 	sudo apt-get install -y --allow-unauthenticated build-essential
-	echo "Install NodeJS"
+	echo -e "\nInstall NodeJS"
 	curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 	sudo apt-get install -y --allow-unauthenticated nodejs
-	echo "Install MongoDB 3.2"
+	echo -e "\nInstall MongoDB 3.2"
 	sudo apt-get install -y --allow-unauthenticated mongodb-org
 }
 
@@ -40,7 +40,30 @@ function config(){
   echo -e "never" > /sys/kernel/mm/transparent_hugepage/defrag
 }
 
+function prepare_database() {
+    data_dir=/var/lib/mongodb/
+    echo -e "\nKilling all mongo, mongod, and mongos processes"
+    killall mongo mongod mongos
+    echo -e "\nWaiting 5 seconds for the server/router processes to spin down"
+    sleep 5
+    echo -e "\nDeleting database data directory"
+    rm -rf /var/lib/mongodb/*
+    echo -e "\nStarting MongoDB"
+    mongod -f /etc/mongod.conf --fork
+    echo -e "\nPreparing the database"
+    mongoimport -d sensors -c temperatures /shared/dataset/temperatures.json
+}
+
+function start_application() {
+    cd /shared/application
+    npm install --no-bin-links
+    sudo npm install nodemon -g
+    chmod a+x /shared/application/start-lab.sh
+}
+
 config
 update_repo
 install_programs
+prepare_database
+start_application
 echo "DONE"

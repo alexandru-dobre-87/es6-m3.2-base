@@ -1,0 +1,27 @@
+{
+  "name": "es6-m3.2-base",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexandru-dobre-87/es6-m3.2-base.git"
+  },
+  "author": "Alexandru Dobre",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alexandru-dobre-87/es6-m3.2-base/issues"
+  },
+  "homepage": "https://github.com/alexandru-dobre-87/es6-m3.2-base#readme",
+  "dependencies": {
+    "co": "^4.6.0",
+    "express": "^4.14.0",
+    "mocha": "^3.1.2",
+    "mongodb": "^2.2.11",
+    "nodemon": "^1.11.0",
+    "pug": "^2.0.0-beta6"
+  }
+}
