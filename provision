@@ -43,7 +43,7 @@ function config(){
 function prepare_database() {
     data_dir=/var/lib/mongodb/
     echo -e "\nKilling all mongo, mongod, and mongos processes"
-    killall mongo mongod mongos
+    killall mongo mongod mongos || true
     echo -e "\nWaiting 5 seconds for the server/router processes to spin down"
     sleep 5
     echo -e "\nDeleting database data directory"
