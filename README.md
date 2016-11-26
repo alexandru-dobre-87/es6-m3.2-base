@@ -1,6 +1,6 @@
 # es6-m3.2-base
 
-Presentsation
+Presentation
 =============
 
 https://goo.gl/o7JKyx
