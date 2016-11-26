@@ -14,7 +14,7 @@ Prerequisites
 - git : https://git-scm.com/downloads
 
 
-Please remember that the IP of the VM is **192.168.15.100**
+The IP of the VM is **192.168.15.100**
 
 
 Quick Start
