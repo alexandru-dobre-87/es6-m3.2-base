@@ -6,7 +6,7 @@ Presentation
 https://goo.gl/o7JKyx
 
 
-Prerequisites
+Pre-requisites
 =============
 
 - virtual box :	https://www.virtualbox.org/wiki/Downloads
